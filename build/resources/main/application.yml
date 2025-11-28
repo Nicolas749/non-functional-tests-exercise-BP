@@ -1,0 +1,60 @@
+spring:
+  application:
+    name: springboot-testing-pyramid
+  
+  # Configuración de la base de datos H2
+  datasource:
+    url: jdbc:h2:mem:clientesdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
+  
+  # Configuración de JPA/Hibernate
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+  
+  # Consola H2 (para desarrollo)
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: false
+
+# Configuración del servidor
+server:
+  port: 8080
+  servlet:
+    context-path: /
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: on_param
+    include-exception: false
+
+# Configuración de logging
+logging:
+  level:
+    root: INFO
+    com.example.demo: DEBUG
+    org.springframework.web: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/application.log
+
+# Configuración de la aplicación
+app:
+  name: Spring Boot Testing Pyramid
+  version: 1.0.0
+  description: Proyecto de ejemplo con arquitectura de testing completa
